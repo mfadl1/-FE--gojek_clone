@@ -1,6 +1,6 @@
 # Gojek Cloning App
 
-Made with flutter by implementing real gojek UI and components that can support direct interaction with users
+Made with flutter by implementing real gojek UI and components that can support direct interaction with users. This application also supports form validation as well as authentication with encrypted JWT token on local storage.
 
 ## Setup Project
 
