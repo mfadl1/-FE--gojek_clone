@@ -13,12 +13,7 @@ class GopaySection extends StatefulWidget {
 }
 
 class _GopaySectionState extends State<GopaySection> {
-  int currIndex = 2;
-  final images = [
-    "assets/images/gopay_coins.png",
-    "assets/images/gopay_later.png",
-    "assets/images/gopay.png",
-  ];
+  int currIndex = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +45,7 @@ class _GopaySectionState extends State<GopaySection> {
               ),
               CarouselSlider.builder(
                 options: CarouselOptions(
-                  initialPage: 2,
+                  initialPage: 3,
                   viewportFraction: 0.7,
                   enlargeCenterPage: true,
                   scrollDirection: Axis.vertical,

@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../Validator/form_validation.dart';
 import '../data/constant.dart';
+import '../services/http.dart';
+import '../utils/user_secure_storage.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,6 +17,29 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  late int httpStatusCode;
+  late String message;
+
+  login() async {
+    var response = await BaseClient.post('/auth/login', {
+      "email": emailController.text,
+      "password": passwordController.text,
+    }, 
+      middleware: false
+    );
+    
+    var res = jsonDecode(response.body);
+    var token = res['access_token'];
+    if (token != null) {
+      await UserSecureStorage.setToken(token);
+    }
+    setState(() {
+      httpStatusCode = response.statusCode;
+      message = res['message'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +105,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Email required';
@@ -110,6 +139,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  controller: passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password required';
@@ -135,13 +165,21 @@ class _LoginState extends State<Login> {
                   height: 50,
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
+                        await login();
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
+                          SnackBar(
+                            content: Text(message, textAlign: TextAlign.center),
+                            backgroundColor:
+                                httpStatusCode == 400 ? Colors.red : green1,
+                            behavior: SnackBarBehavior.floating,
+                            duration: const Duration(seconds: 2),
+                          ),
                         );
+                        if (httpStatusCode == 200) {
+                          context.push('/');
+                        }
                       }
                     },
                     style: TextButton.styleFrom(

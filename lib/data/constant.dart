@@ -34,3 +34,5 @@ TextStyle bold16 = bold14.copyWith(fontSize: 16);
 TextStyle bold22 = bold16.copyWith(fontSize: 22);
 
 TextStyle bold24 = bold22.copyWith(fontSize: 24);
+
+bool isLoggedIn = false;

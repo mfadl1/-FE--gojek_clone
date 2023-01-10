@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../pages/home_page.dart';
 import '../pages/welcome_page.dart';
+import '../utils/user_secure_storage.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -18,9 +19,8 @@ final GoRouter router = GoRouter(
     ),
   ],
   redirect: (context, state) async {
-    const isAuthenticated = true;
-    // ignore: dead_code
-    if (!isAuthenticated) {
+    var token = await UserSecureStorage.getToken();
+    if (token == null) {
       return '/welcome';
     }
     return null;

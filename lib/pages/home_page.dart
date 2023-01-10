@@ -24,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: green1,
         toolbarHeight: 70,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             Flexible(

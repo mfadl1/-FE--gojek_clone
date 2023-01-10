@@ -1,10 +1,41 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../components/profile_component.dart';
 import '../data/constant.dart';
+import '../services/http.dart';
+import '../utils/user_secure_storage.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  String name = "";
+  String email = "";
+  String phoneNumber = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
+  Future getUserData() async {
+    var userId = await UserSecureStorage.getId();
+    var response = await BaseClient.post('/me/$userId', {});
+    var res = jsonDecode(response.body);
+
+    setState(() {
+      name = res['name'];
+      email = res['email'];
+      phoneNumber = res['phone_number'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +53,12 @@ class Profile extends StatelessWidget {
           style: bold22.copyWith(color: Colors.black),
         ),
       ),
-      body: const ProfileComponent(),
+      body: ProfileComponent(
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        callback: getUserData(),
+      ),
     );
   }
 }

@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import '../Validator/form_validation.dart';
 import '../data/constant.dart';
 
-class EditProfileForm extends StatelessWidget {
-  const EditProfileForm({super.key});
+class ProfileForm extends StatelessWidget {
+  final TextEditingController name;
+  final TextEditingController phoneNumber;
+  final TextEditingController email;
+  final TextEditingController password;
+  const ProfileForm({super.key, required this.name,required this.phoneNumber, required this.email, required this.password});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,7 @@ class EditProfileForm extends StatelessWidget {
           ),
         ),
         TextFormField(
+          controller: name,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Name required';

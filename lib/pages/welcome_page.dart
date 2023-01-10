@@ -63,141 +63,143 @@ class _LandingPageState extends State<LandingPage> {
           ),
         ),
       ),
-      body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  viewportFraction: 1,
-                  height: 330,
-                  enableInfiniteScroll: false,
-                  onPageChanged: (index, reason) => setState(() {
-                    currIndex = index;
-                  }),
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CarouselSlider.builder(
+                  options: CarouselOptions(
+                    viewportFraction: 1,
+                    height: 330,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) => setState(() {
+                      currIndex = index;
+                    }),
+                  ),
+                  itemCount: welcomeCarousel.length,
+                  itemBuilder: (context, index, realIndex) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 40, right: 40),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                              "assets/images/${welcomeCarousel[index].image}.png"),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            welcomeCarousel[index].title,
+                            style: bold24,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            welcomeCarousel[index].description,
+                            style: regular16.copyWith(color: grey2, fontSize: 18),
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
+                    );
+                  },
                 ),
-                itemCount: welcomeCarousel.length,
-                itemBuilder: (context, index, realIndex) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 40, right: 40),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                            "assets/images/${welcomeCarousel[index].image}.png"),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          welcomeCarousel[index].title,
-                          style: bold24,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          welcomeCarousel[index].description,
-                          style: regular16.copyWith(color: grey2, fontSize: 18),
-                          textAlign: TextAlign.center,
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-              DotsIndicator(
-                dotsCount: welcomeCarousel.length,
-                position: currIndex.toDouble(),
-                decorator: DotsDecorator(color: grey1, activeColor: green1),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(children: [
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextButton(
-                      onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const Login(),
-                        ),
-                      ),
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: green1,
-                        shape: const StadiumBorder(),
-                        splashFactory: NoSplash.splashFactory,
-                      ),
-                      child: Text(
-                        "Log in",
-                        style: bold16,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextButton(
-                      onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const SignUp(),
-                        ),
-                      ),
-                      style: TextButton.styleFrom(
-                        foregroundColor: green1,
-                        shape: StadiumBorder(
-                          side: BorderSide(color: green1),
-                        ),
-                        splashFactory: NoSplash.splashFactory,
-                      ),
-                      child: Text(
-                        "Sign up",
-                        style: bold16,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: RichText(
-                          text: TextSpan(
-                            style: regular14.copyWith(color: grey2),
-                            children: [
-                              const TextSpan(
-                                  text:
-                                      "By logging in our registering, you agree to our "),
-                              TextSpan(
-                                  text: "Terms of service ",
-                                  style: regular14.copyWith(color: green1)),
-                              const TextSpan(text: "and "),
-                              TextSpan(
-                                  text: "Privacy policy",
-                                  style: regular14.copyWith(color: green1)),
-                            ],
+                DotsIndicator(
+                  dotsCount: welcomeCarousel.length,
+                  position: currIndex.toDouble(),
+                  decorator: DotsDecorator(color: grey1, activeColor: green1),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(children: [
+                    SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => const Login(),
                           ),
                         ),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: green1,
+                          shape: const StadiumBorder(),
+                          splashFactory: NoSplash.splashFactory,
+                        ),
+                        child: Text(
+                          "Log in",
+                          style: bold16,
+                        ),
                       ),
-                    ],
-                  ),
-                ]),
-              ),
-            ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => const SignUp(),
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          foregroundColor: green1,
+                          shape: StadiumBorder(
+                            side: BorderSide(color: green1),
+                          ),
+                          splashFactory: NoSplash.splashFactory,
+                        ),
+                        child: Text(
+                          "Sign up",
+                          style: bold16,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          width: 350,
+                          child: RichText(
+                            text: TextSpan(
+                              style: regular14.copyWith(color: grey2),
+                              children: [
+                                const TextSpan(
+                                    text:
+                                        "By logging in our registering, you agree to our "),
+                                TextSpan(
+                                    text: "Terms of service ",
+                                    style: regular14.copyWith(color: green1)),
+                                const TextSpan(text: "and "),
+                                TextSpan(
+                                    text: "Privacy policy",
+                                    style: regular14.copyWith(color: green1)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ),
+              ],
+            ),
           ),
         ),
       ),
