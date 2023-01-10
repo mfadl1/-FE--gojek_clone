@@ -1,6 +1,6 @@
 # Gojek Cloning App
 
-Build using Flutter
+Made with flutter by implementing real gojek UI and components that users can interact with
 
 ## Setup Project
 
