@@ -90,30 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             NewsList(),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        unselectedItemColor: grey2,
-        selectedItemColor: green1,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.discount),
-            label: "Promos",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "Orders",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: "Chat",
-          ),
-        ],
-      ),
+      ), 
     );
   }
 }

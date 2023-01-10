@@ -29,7 +29,7 @@ class _ProfileState extends State<Profile> {
     var userId = await UserSecureStorage.getId();
     var response = await BaseClient.post('/me/$userId', {});
     var res = jsonDecode(response.body);
-
+    
     setState(() {
       name = res['name'];
       email = res['email'];

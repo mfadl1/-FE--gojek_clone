@@ -1,16 +1,15 @@
-# my_app
+# Gojek Cloning App
 
-A new Flutter project.
+Build using Flutter
 
-## Getting Started
+## Setup Project
 
-This project is a starting point for a Flutter application.
+    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
+    $ cd PROJECT_TITLE
 
-A few resources to get you started if this is your first Flutter project:
+## Install Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    $ flutter pub get
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run the project
+    $ flutter run

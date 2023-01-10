@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_app/pages/root_page.dart';
 
-import '../pages/home_page.dart';
 import '../pages/welcome_page.dart';
 import '../utils/user_secure_storage.dart';
 
@@ -10,7 +10,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const MyHomePage(),
+          const TabPage(),
     ),
     GoRoute(
       path: '/welcome',
